@@ -1,4 +1,5 @@
 import "./App.css";
+import backgroundVideo from './assets/spotify.mp4';
 import {
   FormControl,
   InputGroup,
@@ -59,6 +60,9 @@ function App() {
 
   return (
     <>
+      <video autoPlay muted loop style={styles.backGround}>
+        <source src={backgroundVideo} type="video/mp4" />
+      </video>
       <Container>
         <InputGroup>
           <FormControl
@@ -106,6 +110,15 @@ export default App;
 
 
 const styles = {
+  backGround:{
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100vw',
+    height: '100vh',
+    objectFit: 'cover',
+    zIndex: -1,
+  },
   searchInput: {
     width: 300,
     height: 35,
