@@ -63,8 +63,8 @@ function App() {
       <video autoPlay muted loop style={styles.backGround}>
         <source src={backgroundVideo} type="video/mp4" />
       </video>
-      <Container>
-        <InputGroup>
+      <Container style={styles.searchContainer}>
+        <InputGroup style={styles.inputGroup}>
           <FormControl
             placeholder="Search For Artist"
             type="input"
@@ -85,19 +85,21 @@ function App() {
         <Row style={styles.albumsRow}>
           {albums.map((album) => (
             <Card key={album.id} style={styles.albumCard}>
-              <Card.Img src={album.images[0]?.url} style={styles.albumImage} />
-              <Card.Body>
-                <Card.Title style={styles.albumTitle}>{album.name}</Card.Title>
-                <Card.Text style={styles.albumText}>
-                  Release Date: <br /> {album.release_date}
-                </Card.Text>
-                <Button
-                  href={album.external_urls.spotify}
-                  style={styles.albumLinkButton}
-                >
-                  Album Link
-                </Button>
-              </Card.Body>
+              <div style={styles.albumImageContainer}>
+                <img src={album.images[0]?.url} style={styles.albumImage} alt={album.name} />
+              </div>
+              <div style={styles.albumInfo}>
+                <h3 style={styles.albumTitle}>{album.name}</h3>
+                <p style={styles.albumText}>{album.release_date}</p>
+              </div>
+              <div style={styles.progressBar}>
+                <div style={styles.progressFill}></div>
+              </div>
+              <div style={styles.controls}>
+                <a href={album.external_urls.spotify} target="_blank" rel="noopener noreferrer" style={styles.playBtn}>
+                  ▶
+                </a>
+              </div>
             </Card>
           ))}
         </Row>
@@ -135,34 +137,106 @@ const styles = {
     flexWrap: "wrap",
     justifyContent: "space-around",
     alignContent: "center",
+    padding: 20,
   },
   albumCard: {
-    backgroundColor: "white",
-    margin: 10,
-    marginBottom: 30,
-    borderRadius: 5,
+    backgroundColor: "#181818",
+    margin: 15,
+    width: 250,
+    height: 350,
+    borderRadius: 20,
+    color: "white",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: 15,
+    boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
+  },
+  albumImageContainer: {
+    flex: 1,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   albumImage: {
-    borderRadius: "4%",
-    width: 200,
+    width: 180,
+    height: 180,
+    borderRadius: 8,
+    objectFit: "cover",
+  },
+  albumInfo: {
+    textAlign: "center",
+    margin: "10px 0",
+    flex: 0.5,
   },
   albumTitle: {
-    whiteSpace: "wrap",
     fontWeight: "bold",
+    fontSize: 16,
+    margin: "5px 0",
+    color: "white",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
     maxWidth: 200,
-    fontSize: 18,
-    marginTop: 10,
-    color: "black",
   },
   albumText: {
-    color: "black",
+    fontSize: 12,
+    color: "#b3b3b3",
+    margin: 0,
   },
-  albumLinkButton: {
-    backgroundColor: "black",
+  progressBar: {
+    width: "100%",
+    height: "4px",
+    backgroundColor: "#404040",
+    borderRadius: "2px",
+    margin: "10px 0",
+    overflow: "hidden",
+  },
+  progressFill: {
+    width: "50%",
+    height: "100%",
+    backgroundColor: "#1DB954",
+  },
+  controls: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    marginTop: "10px",
+  },
+  linkText: {
+    fontSize: 10,
+    color: "#b3b3b3",
+    margin: "5px 0",
+    textAlign: "center",
+    wordBreak: "break-all",
+    maxWidth: "100%",
+  },
+  previousBtn: {
+    background: "none",
+    border: "none",
     color: "white",
-    fontWeight: "bold",
-    fontSize: 15,
-    borderRadius: 5,
-    padding: 10,
+    fontSize: 20,
+    cursor: "pointer",
+  },
+  playBtn: {
+    backgroundColor: "#1DB954",
+    color: "white",
+    border: "none",
+    borderRadius: "50%",
+    width: 50,
+    height: 50,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: 18,
+    textDecoration: "none",
+  },
+  nextBtn: {
+    background: "none",
+    border: "none",
+    color: "white",
+    fontSize: 20,
+    cursor: "pointer",
   },
 };
