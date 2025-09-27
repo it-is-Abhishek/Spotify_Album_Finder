@@ -124,13 +124,15 @@ const styles = {
   searchInput: {
     width: 300,
     height: 35,
-    border: 0,
+    border: '1px solid white',
     borderRadius: 5,
     marginRight: 10,
     paddingLeft: 10,
+    backgroundColor: 'transparent',
+    color: 'white',
   },
   searchButton: {
-    height: 35,
+    height: 41,
   },
   albumsRow: {
     display: "flex",
@@ -212,13 +214,6 @@ const styles = {
     wordBreak: "break-all",
     maxWidth: "100%",
   },
-  previousBtn: {
-    background: "none",
-    border: "none",
-    color: "white",
-    fontSize: 20,
-    cursor: "pointer",
-  },
   playBtn: {
     backgroundColor: "#1DB954",
     color: "white",
@@ -231,12 +226,5 @@ const styles = {
     justifyContent: "center",
     fontSize: 18,
     textDecoration: "none",
-  },
-  nextBtn: {
-    background: "none",
-    border: "none",
-    color: "white",
-    fontSize: 20,
-    cursor: "pointer",
-  },
+  }
 };
