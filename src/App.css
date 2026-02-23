@@ -1,42 +1,346 @@
+@import "tailwindcss";
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #121212;
+}
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
 }
 
-@keyframes logo-spin {
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: #646cff;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Skeleton Loading Animation */
+.skeleton-image,
+.skeleton-text {
+  background: linear-gradient(90deg, #282828 25%, #3e3e3e 50%, #282828 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-image {
+  width: 180px;
+  height: 180px;
+  border-radius: 8px;
+  margin: 0 auto 15px;
+}
+
+.skeleton-text {
+  height: 16px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.skeleton-text.short {
+  width: 60%;
+  height: 12px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Album Card Hover Effects */
+.album-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.album-card:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0px rgba(29, 185, 84, 0.3) !important;
+}
+
+.album-card:hover .album-play-btn {
+  transform: scale(1.1);
+  box-shadow: 0 4px 20px rgba(29, 185, 84, 0.5);
+}
+
+.album-card .albumImage {
+  transition: transform 0.3s ease;
+}
+
+.album-card:hover .albumImage {
+  transform: scale(1.05);
+}
+
+/* Modal Styles */
+.modal-content {
+  background-color: #181818 !important;
+  border: 1px solid #282828 !important;
+  border-radius: 12px !important;
+}
+
+.modal-header {
+  border-bottom: 1px solid #282828 !important;
+}
+
+.modal-footer {
+  border-top: 1px solid #282828 !important;
+}
+
+.modal-backdrop.show {
+  opacity: 0.8;
+}
+
+.modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+  background: #181818;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+  background: #404040;
+  border-radius: 4px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
+/* Track Item Hover */
+.track-item:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Dropdown Styles */
+.dropdown-menu {
+  background-color: #282828 !important;
+  border: none !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
+  padding: 8px !important;
+}
+
+.dropdown-item {
+  color: #b3b3b3 !important;
+  border-radius: 4px !important;
+  padding: 8px 16px !important;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #fff !important;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: #1DB954 !important;
+  color: #fff !important;
+}
+
+/* Button Variants */
+.btn-success {
+  background-color: #1DB954 !important;
+  border-color: #1DB954 !important;
+}
+
+.btn-success:hover {
+  background-color: #1ed760 !important;
+}
+
+.btn-outline-light {
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.btn-outline-light:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: #fff !important;
+}
+
+/* Form Control */
+.form-control {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #fff !important;
+}
+
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.form-control:focus {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  border-color: #1DB954 !important;
+  box-shadow: 0 0 0 0.2rem rgba(29, 185, 84, 0.25) !important;
+}
+
+/* Chip Styles */
+.chip:hover {
+  background-color: rgba(29, 185, 84, 0.3) !important;
+  border-color: #1DB954 !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .searchInput {
+    width: 100% !important;
+    max-width: 300px !important;
+  }
+
+  .albumCard {
+    width: 200px !important;
+    height: 320px !important;
+  }
+
+  .albumImage {
+    width: 140px !important;
+    height: 140px !important;
+  }
+
+  .title {
+    font-size: 1.8rem !important;
+  }
+}
+
+/* Input Range Styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  background: transparent;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background: #404040;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background: #fff;
+  margin-top: -4px;
+  cursor: pointer;
+}
+
+input[type="range"]:hover::-webkit-slider-thumb {
+  transform: scale(1.2);
+}
+
+/* Animations */
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(20px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+.album-card {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.album-card:nth-child(1) { animation-delay: 0.05s; }
+.album-card:nth-child(2) { animation-delay: 0.1s; }
+.album-card:nth-child(3) { animation-delay: 0.15s; }
+.album-card:nth-child(4) { animation-delay: 0.2s; }
+.album-card:nth-child(5) { animation-delay: 0.25s; }
+.album-card:nth-child(6) { animation-delay: 0.3s; }
+.album-card:nth-child(7) { animation-delay: 0.35s; }
+.album-card:nth-child(8) { animation-delay: 0.4s; }
+
+/* Light Mode Support */
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  
+  body {
+    background-color: #f5f5f5;
+  }
+  
+  a:hover {
+    color: #747bff;
+  }
+  
+  button {
+    background-color: #f9f9f9;
+  }
+  
+  .albumCard {
+    background-color: #fff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .albumTitle {
+    color: #213547;
+  }
+  
+  .albumText {
+    color: #666;
   }
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
